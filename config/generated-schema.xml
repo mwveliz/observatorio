@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="propel" package="lib.model" defaultIdMethod="native">
+
+  <table name="autor">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="ficha_autor" phpName="FichaAutor" type="VARCHAR" size="255" required="false" />
+    <column name="inedito" phpName="Inedito" type="BOOLEAN" required="false" />
+    <column name="sexo" phpName="Sexo" type="BOOLEAN" required="false" />
+    <column name="nacionalidad" phpName="Nacionalidad" type="VARCHAR" size="255" required="false" />
+    <column name="fecha_nacimiento" phpName="FechaNacimiento" type="INTEGER" required="false" />
+    <column name="nombre" phpName="Nombre" type="VARCHAR" size="255" required="false" />
+    <column name="apellido" phpName="Apellido" type="VARCHAR" size="255" required="false" />
+    <column name="vive" phpName="Vive" type="BOOLEAN" required="false" />
+    <column name="tipoautor" phpName="Tipoautor" type="INTEGER" required="false" />
+    <foreign-key foreignTable="autor" onUpdate="CASCADE">
+      <reference local="tipoautor" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table name="clientesatendidos">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="cantidad" phpName="Cantidad" type="VARCHAR" size="255" required="false" />
+    <column name="fache" phpName="Fache" type="VARCHAR" size="255" required="false" />
+    <column name="id_libreria" phpName="IdLibreria" type="INTEGER" required="false" />
+    <foreign-key foreignTable="libreria" onUpdate="CASCADE">
+      <reference local="id_libreria" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table name="distribucion">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="id_edicion" phpName="IdEdicion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="edicion" onUpdate="CASCADE">
+      <reference local="id_edicion" foreign="id" />
+    </foreign-key>
+    <column name="cantidad_ejemplar" phpName="CantidadEjemplar" type="INTEGER" required="false" />
+    <column name="fecha" phpName="Fecha" type="VARCHAR" size="255" required="false" />
+    <column name="id_tipodestino" phpName="IdTipodestino" type="BIGINT" required="false" />
+    <foreign-key foreignTable="tipodestino" onUpdate="CASCADE">
+      <reference local="id_tipodestino" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table name="edicion">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="traduccion" phpName="Traduccion" type="VARCHAR" size="255" required="false" />
+    <column name="lengua_origen" phpName="LenguaOrigen" type="VARCHAR" size="255" required="false" />
+    <column name="lengua_traducir" phpName="LenguaTraducir" type="VARCHAR" size="255" required="false" />
+    <column name="traductor" phpName="Traductor" type="VARCHAR" size="255" required="false" />
+    <column name="numero_reimpresion" phpName="NumeroReimpresion" type="BOOLEAN" required="false" />
+    <column name="coedicion" phpName="Coedicion" type="INTEGER" required="false" />
+    <column name="id_libro" phpName="IdLibro" type="INTEGER" required="false" />
+    <column name="corrector" phpName="Corrector" type="VARCHAR" size="255" required="false" />
+    <column name="coleccion" phpName="Coleccion" type="VARCHAR" size="255" required="false" />
+    <column name="isbn" phpName="Isbn" type="VARCHAR" size="255" required="false" />
+    <column name="deposito_legal" phpName="DepositoLegal" type="VARCHAR" size="255" required="false" />
+    <column name="diagramador" phpName="Diagramador" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="estado">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="feria">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="precio" phpName="Precio" type="VARCHAR" size="255" required="false" />
+    <column name="cantidad_ejemplares" phpName="CantidadEjemplares" type="VARCHAR" size="255" required="false" />
+    <column name="nacionalidad" phpName="Nacionalidad" type="BOOLEAN" required="false" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="genero">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="historico">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="id_edicion" phpName="IdEdicion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="edicion" onUpdate="CASCADE">
+      <reference local="id_edicion" foreign="id" />
+    </foreign-key>
+    <column name="id_status" phpName="IdStatus" type="INTEGER" required="false" />
+    <foreign-key foreignTable="status" onUpdate="CASCADE">
+      <reference local="id_status" foreign="id" />
+    </foreign-key>
+    <column name="id_institucion" phpName="IdInstitucion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="institucion" onUpdate="CASCADE">
+      <reference local="id_institucion" foreign="id" />
+    </foreign-key>
+    <column name="fecha_inicio" phpName="FechaInicio" type="VARCHAR" size="255" required="false" />
+    <column name="fecha_fin" phpName="FechaFin" type="VARCHAR" size="255" required="false" />
+    <column name="status_actual" phpName="StatusActual" type="BOOLEAN" required="false" />
+    <column name="id_impresion" phpName="IdImpresion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="impresion" onUpdate="CASCADE">
+      <reference local="id_impresion" foreign="id" />
+    </foreign-key>
+    <column name="id_distribucion" phpName="IdDistribucion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="distribucion" onUpdate="CASCADE">
+      <reference local="id_distribucion" foreign="id" />
+    </foreign-key>
+    <column name="id_venta" phpName="IdVenta" type="INTEGER" required="false" />
+    <foreign-key foreignTable="venta" onUpdate="CASCADE">
+      <reference local="id_venta" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table name="impresion">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="volumen" phpName="Volumen" type="INTEGER" required="false" />
+    <column name="id_edicion" phpName="IdEdicion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="edicion" onUpdate="CASCADE">
+      <reference local="id_edicion" foreign="id" />
+    </foreign-key>
+    <column name="id_tipocaratula" phpName="IdTipocaratula" type="INTEGER" required="false" />
+    <foreign-key foreignTable="tipocaratula" onUpdate="CASCADE">
+      <reference local="id_tipocaratula" foreign="id" />
+    </foreign-key>
+    <column name="id_tipoimpresion" phpName="IdTipoimpresion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="tipoimpresion" onUpdate="CASCADE">
+      <reference local="id_tipoimpresion" foreign="id" />
+    </foreign-key>
+    <column name="id_tipoencuadernacion" phpName="IdTipoencuadernacion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="tipoencuadernacion" onUpdate="CASCADE">
+      <reference local="id_tipoencuadernacion" foreign="id" />
+    </foreign-key>
+    <column name="costo" phpName="Costo" type="VARCHAR" size="255" required="false" />
+    <column name="id_tipotripa" phpName="IdTipotripa" type="INTEGER" required="false" />
+    <foreign-key foreignTable="tipotripa" onUpdate="CASCADE">
+      <reference local="id_tipotripa" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table name="institucion">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="nombre" phpName="Nombre" type="VARCHAR" size="255" required="false" />
+    <column name="correo" phpName="Correo" type="VARCHAR" size="255" required="false" />
+    <column name="rif" phpName="Rif" type="VARCHAR" size="255" required="false" />
+    <column name="ubicacion" phpName="Ubicacion" type="VARCHAR" size="255" required="false" />
+    <column name="id_tipoinstitucion" phpName="IdTipoinstitucion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="tipoinstitucion" onUpdate="CASCADE">
+      <reference local="id_tipoinstitucion" foreign="id" />
+    </foreign-key>
+    <column name="sector" phpName="Sector" type="VARCHAR" size="255" required="false" />
+    <column name="responsable" phpName="Responsable" type="VARCHAR" size="255" required="false" />
+    <column name="publica" phpName="Publica" type="BOOLEAN" required="false" />
+    <column name="id_pais" phpName="IdPais" type="INTEGER" required="false" />
+    <foreign-key foreignTable="pais" onUpdate="CASCADE">
+      <reference local="id_pais" foreign="id" />
+    </foreign-key>
+    <column name="id_municipio" phpName="IdMunicipio" type="INTEGER" required="false" />
+    <foreign-key foreignTable="municipio" onUpdate="CASCADE">
+      <reference local="id_municipio" foreign="id" />
+    </foreign-key>
+    <column name="id_parroquia" phpName="IdParroquia" type="INTEGER" required="false" />
+    <foreign-key foreignTable="parroquia" onUpdate="CASCADE">
+      <reference local="id_parroquia" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table name="libreria">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+    <column name="id_tipolibreria" phpName="IdTipolibreria" type="INTEGER" required="false" />
+    <foreign-key foreignTable="tipolibreria" onUpdate="CASCADE">
+      <reference local="id_tipolibreria" foreign="id" />
+    </foreign-key>
+    <column name="id_municipio" phpName="IdMunicipio" type="INTEGER" required="false" />
+    <foreign-key foreignTable="municipio" onUpdate="CASCADE">
+      <reference local="id_municipio" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table name="libro">
+    <column name="titulo" phpName="Titulo" type="VARCHAR" size="255" required="false" />
+    <column name="subtitulo" phpName="Subtitulo" type="VARCHAR" size="255" required="false" />
+    <column name="id_genero" phpName="IdGenero" type="INTEGER" required="false" />
+    <foreign-key foreignTable="genero" onUpdate="CASCADE">
+      <reference local="id_genero" foreign="id" />
+    </foreign-key>
+    <column name="id_tematica" phpName="IdTematica" type="INTEGER" required="false" />
+    <foreign-key foreignTable="tematica" onUpdate="CASCADE">
+      <reference local="id_tematica" foreign="id" />
+    </foreign-key>
+    <column name="id_autor" phpName="IdAutor" type="INTEGER" required="false" />
+    <foreign-key foreignTable="autor" onUpdate="CASCADE">
+      <reference local="id_autor" foreign="id" />
+    </foreign-key>
+    <column name="id_materia" phpName="IdMateria" type="INTEGER" required="false" />
+    <foreign-key foreignTable="materia" onUpdate="CASCADE">
+      <reference local="id_materia" foreign="id" />
+    </foreign-key>
+    <column name="id_tipopublicacion" phpName="IdTipopublicacion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="tipopublicacion" onUpdate="CASCADE">
+      <reference local="id_tipopublicacion" foreign="id" />
+    </foreign-key>
+    <column name="sinopsis" phpName="Sinopsis" type="VARCHAR" size="255" required="false" />
+    <column name="cantidad_libro" phpName="CantidadLibro" type="VARCHAR" size="255" required="false" />
+    <column name="compilador" phpName="Compilador" type="VARCHAR" size="255" required="false" />
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+  </table>
+
+  <table name="materia">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="municipio">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+    <column name="id_estado" phpName="IdEstado" type="INTEGER" required="false" />
+    <foreign-key foreignTable="estado" onUpdate="CASCADE">
+      <reference local="id_estado" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table name="pais">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+    <column name="nacionalidad" phpName="Nacionalidad" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="parroquia">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+    <column name="id_municipio" phpName="IdMunicipio" type="INTEGER" required="false" />
+  </table>
+
+  <table name="status">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+    <column name="aprobacion" phpName="Aprobacion" type="BOOLEAN" required="false" />
+  </table>
+
+  <table name="tematica">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="tipoautor">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="tipocaratula">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="tipodestino">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="ente_publico" phpName="EntePublico" type="BOOLEAN" required="false" />
+    <column name="donacion" phpName="Donacion" type="BOOLEAN" required="false" />
+    <column name="gratuita" phpName="Gratuita" type="BOOLEAN" required="false" />
+    <column name="importacion" phpName="Importacion" type="BOOLEAN" required="false" />
+    <column name="exportacion" phpName="Exportacion" type="BOOLEAN" required="false" />
+    <column name="otro" phpName="Otro" type="VARCHAR" size="255" required="false" />
+    <column name="id_feria" phpName="IdFeria" type="INTEGER" required="false" />
+    <foreign-key foreignTable="feria" onUpdate="CASCADE">
+      <reference local="id_feria" foreign="id" />
+    </foreign-key>
+    <column name="id_pais" phpName="IdPais" type="INTEGER" required="false" />
+    <foreign-key foreignTable="pais" onUpdate="CASCADE">
+      <reference local="id_pais" foreign="id" />
+    </foreign-key>
+    <column name="id_estado" phpName="IdEstado" type="INTEGER" required="false" />
+    <foreign-key foreignTable="estado" onUpdate="CASCADE">
+      <reference local="id_estado" foreign="id" />
+    </foreign-key>
+    <column name="id_libreria" phpName="IdLibreria" type="INTEGER" required="false" />
+    <foreign-key foreignTable="libreria" onUpdate="CASCADE">
+      <reference local="id_libreria" foreign="id" />
+    </foreign-key>
+    <column name="id_municipio" phpName="IdMunicipio" type="INTEGER" required="false" />
+    <foreign-key foreignTable="municipio" onUpdate="CASCADE">
+      <reference local="id_municipio" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table name="tipoencuadernacion">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="tipoimpresion">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="tipoinstitucion">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="tipolibreria">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="tipopublicacion">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="tipotripa">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="255" required="false" />
+  </table>
+
+  <table name="venta">
+    <column name="id" phpName="Id" type="BIGINT" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="cantidad_ejemplares" phpName="CantidadEjemplares" type="INTEGER" required="false" />
+    <column name="fecha" phpName="Fecha" type="VARCHAR" size="255" required="false" />
+    <column name="id_libreria" phpName="IdLibreria" type="INTEGER" required="false" />
+    <foreign-key foreignTable="libreria" onUpdate="CASCADE">
+      <reference local="id_libreria" foreign="id" />
+    </foreign-key>
+    <column name="id_edicion" phpName="IdEdicion" type="INTEGER" required="false" />
+    <foreign-key foreignTable="edicion" onUpdate="CASCADE">
+      <reference local="id_edicion" foreign="id" />
+    </foreign-key>
+    <column name="id_tipodestino" phpName="IdTipodestino" type="BIGINT" required="false" />
+    <foreign-key foreignTable="tipodestino" onUpdate="CASCADE">
+      <reference local="id_tipodestino" foreign="id" />
+    </foreign-key>
+  </table>
+
+</database>

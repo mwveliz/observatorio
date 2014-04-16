@@ -1,0 +1,196 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  autor:
+    _attributes: { phpName: Autor }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    ficha_autor: { phpName: FichaAutor, type: VARCHAR, size: '255', required: false }
+    inedito: { phpName: Inedito, type: BOOLEAN, required: false }
+    sexo: { phpName: Sexo, type: BOOLEAN, required: false }
+    nacionalidad: { phpName: Nacionalidad, type: VARCHAR, size: '255', required: false }
+    fecha_nacimiento: { phpName: FechaNacimiento, type: INTEGER, required: false }
+    nombre: { phpName: Nombre, type: VARCHAR, size: '255', required: false }
+    apellido: { phpName: Apellido, type: VARCHAR, size: '255', required: false }
+    vive: { phpName: Vive, type: BOOLEAN, required: false }
+    tipoautor: { phpName: Tipoautor, type: INTEGER, required: false, foreignTable: autor, foreignReference: id, onUpdate: CASCADE }
+  clientesatendidos:
+    _attributes: { phpName: Clientesatendidos }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    cantidad: { phpName: Cantidad, type: VARCHAR, size: '255', required: false }
+    fache: { phpName: Fache, type: VARCHAR, size: '255', required: false }
+    id_libreria: { phpName: IdLibreria, type: INTEGER, required: false, foreignTable: libreria, foreignReference: id, onUpdate: CASCADE }
+  distribucion:
+    _attributes: { phpName: Distribucion }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    id_edicion: { phpName: IdEdicion, type: INTEGER, required: false, foreignTable: edicion, foreignReference: id, onUpdate: CASCADE }
+    cantidad_ejemplar: { phpName: CantidadEjemplar, type: INTEGER, required: false }
+    fecha: { phpName: Fecha, type: VARCHAR, size: '255', required: false }
+    id_tipodestino: { phpName: IdTipodestino, type: BIGINT, required: false, foreignTable: tipodestino, foreignReference: id, onUpdate: CASCADE }
+  edicion:
+    _attributes: { phpName: Edicion }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    traduccion: { phpName: Traduccion, type: VARCHAR, size: '255', required: false }
+    lengua_origen: { phpName: LenguaOrigen, type: VARCHAR, size: '255', required: false }
+    lengua_traducir: { phpName: LenguaTraducir, type: VARCHAR, size: '255', required: false }
+    traductor: { phpName: Traductor, type: VARCHAR, size: '255', required: false }
+    numero_reimpresion: { phpName: NumeroReimpresion, type: BOOLEAN, required: false }
+    coedicion: { phpName: Coedicion, type: INTEGER, required: false }
+    id_libro: { phpName: IdLibro, type: INTEGER, required: false }
+    corrector: { phpName: Corrector, type: VARCHAR, size: '255', required: false }
+    coleccion: { phpName: Coleccion, type: VARCHAR, size: '255', required: false }
+    isbn: { phpName: Isbn, type: VARCHAR, size: '255', required: false }
+    deposito_legal: { phpName: DepositoLegal, type: VARCHAR, size: '255', required: false }
+    diagramador: { phpName: Diagramador, type: VARCHAR, size: '255', required: false }
+  estado:
+    _attributes: { phpName: Estado }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  feria:
+    _attributes: { phpName: Feria }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    precio: { phpName: Precio, type: VARCHAR, size: '255', required: false }
+    cantidad_ejemplares: { phpName: CantidadEjemplares, type: VARCHAR, size: '255', required: false }
+    nacionalidad: { phpName: Nacionalidad, type: BOOLEAN, required: false }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  genero:
+    _attributes: { phpName: Genero }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  historico:
+    _attributes: { phpName: Historico }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    id_edicion: { phpName: IdEdicion, type: INTEGER, required: false, foreignTable: edicion, foreignReference: id, onUpdate: CASCADE }
+    id_status: { phpName: IdStatus, type: INTEGER, required: false, foreignTable: status, foreignReference: id, onUpdate: CASCADE }
+    id_institucion: { phpName: IdInstitucion, type: INTEGER, required: false, foreignTable: institucion, foreignReference: id, onUpdate: CASCADE }
+    fecha_inicio: { phpName: FechaInicio, type: VARCHAR, size: '255', required: false }
+    fecha_fin: { phpName: FechaFin, type: VARCHAR, size: '255', required: false }
+    status_actual: { phpName: StatusActual, type: BOOLEAN, required: false }
+    id_impresion: { phpName: IdImpresion, type: INTEGER, required: false, foreignTable: impresion, foreignReference: id, onUpdate: CASCADE }
+    id_distribucion: { phpName: IdDistribucion, type: INTEGER, required: false, foreignTable: distribucion, foreignReference: id, onUpdate: CASCADE }
+    id_venta: { phpName: IdVenta, type: INTEGER, required: false, foreignTable: venta, foreignReference: id, onUpdate: CASCADE }
+  impresion:
+    _attributes: { phpName: Impresion }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    volumen: { phpName: Volumen, type: INTEGER, required: false }
+    id_edicion: { phpName: IdEdicion, type: INTEGER, required: false, foreignTable: edicion, foreignReference: id, onUpdate: CASCADE }
+    id_tipocaratula: { phpName: IdTipocaratula, type: INTEGER, required: false, foreignTable: tipocaratula, foreignReference: id, onUpdate: CASCADE }
+    id_tipoimpresion: { phpName: IdTipoimpresion, type: INTEGER, required: false, foreignTable: tipoimpresion, foreignReference: id, onUpdate: CASCADE }
+    id_tipoencuadernacion: { phpName: IdTipoencuadernacion, type: INTEGER, required: false, foreignTable: tipoencuadernacion, foreignReference: id, onUpdate: CASCADE }
+    costo: { phpName: Costo, type: VARCHAR, size: '255', required: false }
+    id_tipotripa: { phpName: IdTipotripa, type: INTEGER, required: false, foreignTable: tipotripa, foreignReference: id, onUpdate: CASCADE }
+  institucion:
+    _attributes: { phpName: Institucion }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    nombre: { phpName: Nombre, type: VARCHAR, size: '255', required: false }
+    correo: { phpName: Correo, type: VARCHAR, size: '255', required: false }
+    rif: { phpName: Rif, type: VARCHAR, size: '255', required: false }
+    ubicacion: { phpName: Ubicacion, type: VARCHAR, size: '255', required: false }
+    id_tipoinstitucion: { phpName: IdTipoinstitucion, type: INTEGER, required: false, foreignTable: tipoinstitucion, foreignReference: id, onUpdate: CASCADE }
+    sector: { phpName: Sector, type: VARCHAR, size: '255', required: false }
+    responsable: { phpName: Responsable, type: VARCHAR, size: '255', required: false }
+    publica: { phpName: Publica, type: BOOLEAN, required: false }
+    id_pais: { phpName: IdPais, type: INTEGER, required: false, foreignTable: pais, foreignReference: id, onUpdate: CASCADE }
+    id_municipio: { phpName: IdMunicipio, type: INTEGER, required: false, foreignTable: municipio, foreignReference: id, onUpdate: CASCADE }
+    id_parroquia: { phpName: IdParroquia, type: INTEGER, required: false, foreignTable: parroquia, foreignReference: id, onUpdate: CASCADE }
+  libreria:
+    _attributes: { phpName: Libreria }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+    id_tipolibreria: { phpName: IdTipolibreria, type: INTEGER, required: false, foreignTable: tipolibreria, foreignReference: id, onUpdate: CASCADE }
+    id_municipio: { phpName: IdMunicipio, type: INTEGER, required: false, foreignTable: municipio, foreignReference: id, onUpdate: CASCADE }
+  libro:
+    _attributes: { phpName: Libro }
+    titulo: { phpName: Titulo, type: VARCHAR, size: '255', required: false }
+    subtitulo: { phpName: Subtitulo, type: VARCHAR, size: '255', required: false }
+    id_genero: { phpName: IdGenero, type: INTEGER, required: false, foreignTable: genero, foreignReference: id, onUpdate: CASCADE }
+    id_tematica: { phpName: IdTematica, type: INTEGER, required: false, foreignTable: tematica, foreignReference: id, onUpdate: CASCADE }
+    id_autor: { phpName: IdAutor, type: INTEGER, required: false, foreignTable: autor, foreignReference: id, onUpdate: CASCADE }
+    id_materia: { phpName: IdMateria, type: INTEGER, required: false, foreignTable: materia, foreignReference: id, onUpdate: CASCADE }
+    id_tipopublicacion: { phpName: IdTipopublicacion, type: INTEGER, required: false, foreignTable: tipopublicacion, foreignReference: id, onUpdate: CASCADE }
+    sinopsis: { phpName: Sinopsis, type: VARCHAR, size: '255', required: false }
+    cantidad_libro: { phpName: CantidadLibro, type: VARCHAR, size: '255', required: false }
+    compilador: { phpName: Compilador, type: VARCHAR, size: '255', required: false }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+  materia:
+    _attributes: { phpName: Materia }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  municipio:
+    _attributes: { phpName: Municipio }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+    id_estado: { phpName: IdEstado, type: INTEGER, required: false, foreignTable: estado, foreignReference: id, onUpdate: CASCADE }
+  pais:
+    _attributes: { phpName: Pais }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+    nacionalidad: { phpName: Nacionalidad, type: VARCHAR, size: '255', required: false }
+  parroquia:
+    _attributes: { phpName: Parroquia }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+    id_municipio: { phpName: IdMunicipio, type: INTEGER, required: false }
+  status:
+    _attributes: { phpName: Status }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+    aprobacion: { phpName: Aprobacion, type: BOOLEAN, required: false }
+  tematica:
+    _attributes: { phpName: Tematica }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  tipoautor:
+    _attributes: { phpName: Tipoautor }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  tipocaratula:
+    _attributes: { phpName: Tipocaratula }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  tipodestino:
+    _attributes: { phpName: Tipodestino }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    ente_publico: { phpName: EntePublico, type: BOOLEAN, required: false }
+    donacion: { phpName: Donacion, type: BOOLEAN, required: false }
+    gratuita: { phpName: Gratuita, type: BOOLEAN, required: false }
+    importacion: { phpName: Importacion, type: BOOLEAN, required: false }
+    exportacion: { phpName: Exportacion, type: BOOLEAN, required: false }
+    otro: { phpName: Otro, type: VARCHAR, size: '255', required: false }
+    id_feria: { phpName: IdFeria, type: INTEGER, required: false, foreignTable: feria, foreignReference: id, onUpdate: CASCADE }
+    id_pais: { phpName: IdPais, type: INTEGER, required: false, foreignTable: pais, foreignReference: id, onUpdate: CASCADE }
+    id_estado: { phpName: IdEstado, type: INTEGER, required: false, foreignTable: estado, foreignReference: id, onUpdate: CASCADE }
+    id_libreria: { phpName: IdLibreria, type: INTEGER, required: false, foreignTable: libreria, foreignReference: id, onUpdate: CASCADE }
+    id_municipio: { phpName: IdMunicipio, type: INTEGER, required: false, foreignTable: municipio, foreignReference: id, onUpdate: CASCADE }
+  tipoencuadernacion:
+    _attributes: { phpName: Tipoencuadernacion }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  tipoimpresion:
+    _attributes: { phpName: Tipoimpresion }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  tipoinstitucion:
+    _attributes: { phpName: Tipoinstitucion }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  tipolibreria:
+    _attributes: { phpName: Tipolibreria }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  tipopublicacion:
+    _attributes: { phpName: Tipopublicacion }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  tipotripa:
+    _attributes: { phpName: Tipotripa }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { phpName: Descripcion, type: VARCHAR, size: '255', required: false }
+  venta:
+    _attributes: { phpName: Venta }
+    id: { phpName: Id, type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    cantidad_ejemplares: { phpName: CantidadEjemplares, type: INTEGER, required: false }
+    fecha: { phpName: Fecha, type: VARCHAR, size: '255', required: false }
+    id_libreria: { phpName: IdLibreria, type: INTEGER, required: false, foreignTable: libreria, foreignReference: id, onUpdate: CASCADE }
+    id_edicion: { phpName: IdEdicion, type: INTEGER, required: false, foreignTable: edicion, foreignReference: id, onUpdate: CASCADE }
+    id_tipodestino: { phpName: IdTipodestino, type: BIGINT, required: false, foreignTable: tipodestino, foreignReference: id, onUpdate: CASCADE }
